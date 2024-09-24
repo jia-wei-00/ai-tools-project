@@ -1,15 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "../features/counter/counter-slice";
-import { apiSlice } from "../features/dogs/dogs-api-slice";
+import { dogApiSlice } from "../features/dogs/dogs-api-slice";
+import { stripeApiSlice } from "../features/stripe/stripe-api-slice";
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
-    [apiSlice.reducerPath]: apiSlice.reducer,
+    [dogApiSlice.reducerPath]: dogApiSlice.reducer,
+    [stripeApiSlice.reducerPath]: stripeApiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => {
     //the purpose to do this is to combine the default middleware with apiSlice middleware
-    return getDefaultMiddleware().concat(apiSlice.middleware);
+    return getDefaultMiddleware().concat(
+      dogApiSlice.middleware,
+      stripeApiSlice.middleware
+    );
   },
 });
 

@@ -11,8 +11,8 @@ interface Breed {
   };
 }
 
-export const apiSlice = createApi({
-  reducerPath: "api",
+export const dogApiSlice = createApi({
+  reducerPath: "dogApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://api.thedogapi.com/v1",
     prepareHeaders(headers) {
@@ -31,4 +31,4 @@ export const apiSlice = createApi({
   },
 });
 
-export const { useFetchBreedsQuery } = apiSlice;
+export const { useFetchBreedsQuery } = dogApiSlice;
